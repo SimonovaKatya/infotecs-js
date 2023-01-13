@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+            integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="script.js"></script>
+
+</head>
+<body>
+<div>
+    Всего элементов: <span id="totalCount">0</span>
+</div>
+
+<ol class="list" id="list"></ol>
+<button onclick={fetchPosts()}>get posts</button>
+</body>
+</html>
