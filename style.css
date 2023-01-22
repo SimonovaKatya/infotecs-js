@@ -6,27 +6,61 @@
 
 body {
     padding-bottom: 400px;
+    margin: 5%;
+    background: #212121;
+    color: #14FFEC;
 }
 
+.container {
+    background: #323232;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #0D7377;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
 
-ol {
+.total {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.settings {
+    margin: 30px;
+}
+
+.list {
     width: 300px;
-    border: 1px solid black;
-    background: antiquewhite;
     margin-bottom: 1rem;
 }
 
 .object {
     width: 100%;
-    border: 1px solid black;
     padding: 20px;
     text-align: center;
+    font-style: normal;
+    color: #212121;
     transition: all 0.5s ease-out;
-    background: #6c8ebf;
+    background: #0D7377;
+    border: 1px solid #323232;
     position: relative;
+    cursor: move;
 }
 
-.object:hover {
+::marker {
+    color: #14FFEC;
+}
+
+.object:not(.unselected):hover {
+    background: #dae8fc;
+    border: 1px solid #6c8ebf;
+}
+
+.selected {
     background: #dae8fc;
     border: 1px solid #6c8ebf;
 }
@@ -39,4 +73,36 @@ ol {
     border: 1px solid #6c8ebf;
     padding: 20px;
     text-align: left;
+}
+
+.btnPosts {
+    /*margin: 20px;*/
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+    7px 7px 20px 0px rgba(0, 0, 0, .1),
+    4px 4px 5px 0px rgba(0, 0, 0, .1);
+    background-color: #14FFEC;
+    color: #323232;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.btnPosts:hover {
+    background-color: #323232;
+    color: #14FFEC;
+}
+
+.numberPosts, select {
+    color: #6c8ebf;
+    background: #52616B;
+    border: 1px solid #c5b1ff;
+    padding: 10px;
+    width: fit-content;
+    border: none;
+    margin-bottom: 10px;
 }

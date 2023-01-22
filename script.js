@@ -1,9 +1,17 @@
-let page = 1
+let page = 0
+const list = document.getElementById('list')
+// const container = document.getElementById('container')
+const settings = document.getElementById('settings')
+let isDrag = false;
 
 const input = document.createElement('input')
 input.value = '10';
 input.type = 'number'
-document.body.append(input)
+input.classList.add('numberPosts')
+settings.append(input)
+
+// let sortType = document.querySelector('input[name="sort-type"]:checked').value;
+// console.log(sortType)
 
 input.addEventListener('input', () => {
     const list = document.getElementById('list')
@@ -12,19 +20,56 @@ input.addEventListener('input', () => {
     fetchPosts();
 })
 
+list.addEventListener(`dragstart`, (evt) => {
+    evt.target.classList.add(`selected`);
+    document.querySelectorAll('.object:not(.selected)').forEach(object => object.classList.add('unselected'))
+
+    document.getElementById('popup')?.remove()
+    isDrag = true;
+})
+
+list.addEventListener(`dragend`, (evt) => {
+    evt.target.classList.remove(`selected`);
+    isDrag = false;
+    document.querySelectorAll('.object').forEach(object => object.classList.remove('unselected'))
+});
+
+
+list.addEventListener(`dragover`, (evt) => {
+    evt.preventDefault();
+
+    const activeElement = list.querySelector(`.selected`);
+    const currentElement = evt.target;
+
+    const isMoveable = activeElement !== currentElement &&
+        currentElement.classList.contains(`object`);
+
+    if (!isMoveable) {
+        return;
+    }
+
+    const nextElement = (currentElement === activeElement.nextElementSibling) ?
+        currentElement.nextElementSibling :
+        currentElement;
+
+    list.insertBefore(activeElement, nextElement);
+});
 
 async function fetchPosts() {
     const loader = document.createElement('div');
     loader.innerText = 'загрузка...'
     document.body.append(loader)
+    //
+    // const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${input.value}`)
+    // // const response = await axios.get(`https://dummyjson.com/products/1=${page}&_limit=${input.value}`)
+    const response = await axios.get(`https://dummyjson.com/products?skip=${page * input.value}&limit=${input.value}`)
 
-    const list = document.getElementById('list')
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${input.value}`)
-    console.log(response.data)
-    response.data.forEach(item => {
+    console.log(response)
+    response.data.products.forEach(item => {
         let object = document.createElement('li')
         object.classList.add('object')
-        object.innerText = item.title
+        object.innerText = `${item.title} (price: ${item.price}, rating: ${item.rating})`
+        object.draggable = true;
 
         listenShownPopup(object, item);
 
@@ -45,11 +90,8 @@ function listenShownPopup(object, item) {
     popup.id = 'popup';
     popup.classList.add('popup')
 
-    // const div = document.createElement('div')
-    // div.innerHTML = 'Я ДИВ!!!!!!'
-    // popup.append(div)
-
     object.addEventListener('mouseover', () => {
+        if (isDrag) return
         object.append(popup)
     })
 
@@ -57,51 +99,3 @@ function listenShownPopup(object, item) {
         popup.remove()
     })
 }
-
-
-// const item = document.querySelector('.item')
-// const placeholders = document.querySelectorAll('.placeholder')
-//
-// item.addEventListener('dragstart', dragstart)
-// item.addEventListener('dragend', dragend)
-//
-// for(const placeholder of placeholders){
-//     placeholder.addEventListener('dragover', dragover) /*над плейсхоледром куда мы можем поместить*/
-//     placeholder.addEventListener('dragenter', dragenter)/*заходим на территорию*/
-//     placeholder.addEventListener('dragleave', dragleave)/*перенесли, но вышли отуда*/
-//     placeholder.addEventListener('drop', drop)/*когда отпустили*/
-// }
-//
-// function dragstart(event){
-//     console.log('drag start', event.target);
-//     // event.target.classList.add('hold')
-//     // setTimeout(()=> event.target.classList.add('hide'), 0 )
-// }
-//
-// function dragend(event){
-//     console.log('drag end');
-//     event.target.classList.remove('hold')
-//     event.target.classList.remove('hide')
-// }
-//
-// function dragover(event){
-//     event.preventDefault()
-//     console.log('dragover');
-// }
-//
-// function dragenter(event){
-//     event.target.classList.add('hovered')
-//     console.log('dragenter');
-// }
-//
-// function dragleave(event){
-//     event.target.classList.remove('hovered')
-//     console.log('dragleave');
-// }
-//
-// function drop(event){
-//     event.target.classList.remove('hovered')
-//     event.target.append(item)
-//     console.log('drop');
-// }
-

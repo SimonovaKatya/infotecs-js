@@ -11,11 +11,36 @@
 
 </head>
 <body>
-<div>
+<div class="total">
     Всего элементов: <span id="totalCount">0</span>
 </div>
+<div class="container" id="container">
+    <div>
+        <ol class="list" id="list"></ol>
+    </div>
+    <div class="settings" id="settings">
+        <!--        Сортировка:-->
+        <!--        <div>-->
+        <!--            <input type="radio" id="sort-price-type"-->
+        <!--                   name="sort-type" value="price" checked>-->
+        <!--            <label for="sort-price-type">По цене</label>-->
 
-<ol class="list" id="list"></ol>
-<button onclick={fetchPosts()}>get posts</button>
+        <!--            <input type="radio" id="sort-rating-type"-->
+        <!--                   name="sort-type" value="rating">-->
+        <!--            <label for="sort-rating-type">По рейтингу</label>-->
+        <!--        </div>-->
+
+        <!--        <select id="sort-list">-->
+        <!--            <option value="desc">По убыванию</option>-->
+        <!--            <option value="asc">По возрастанию</option>-->
+        <!--        </select>-->
+
+        <button class="btnPosts" onclick={fetchPosts()}>
+            Получить следующие посты
+        </button>
+    </div>
+
+</div>
+
 </body>
 </html>
