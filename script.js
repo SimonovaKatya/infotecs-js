@@ -104,7 +104,6 @@ function showLoader() {
 
 // скрыть лоудер
 function hideLoader() {
-    console.log(1233)
     loader.style.display = 'none';
 }
 

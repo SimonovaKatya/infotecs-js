@@ -32,8 +32,20 @@ body {
     gap: 5%;
 }
 
+.list-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
 .list {
     margin-bottom: 1rem;
+    width: 400px;
+}
+
+.loader {
+    text-align: center;
 }
 
 .object {
@@ -106,9 +118,6 @@ body {
     color: #14FFEC;
 }
 
-#loader {
-    text-align: center;
-}
 
 
 
