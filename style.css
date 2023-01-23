@@ -14,27 +14,25 @@ body {
 .container {
     background: #323232;
     width: fit-content;
-    padding: 30px;
+    padding: 50px;
     border-radius: 10px;
     border: 1px solid #0D7377;
+}
+
+.container-totalElements {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container-list {
     display: flex;
     justify-content: center;
     gap: 5%;
 }
 
-.total {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.settings {
-    margin: 30px;
-}
-
 .list {
-    width: 300px;
     margin-bottom: 1rem;
 }
 
@@ -42,17 +40,12 @@ body {
     width: 100%;
     padding: 20px;
     text-align: center;
-    font-style: normal;
     color: #212121;
     transition: all 0.5s ease-out;
     background: #0D7377;
     border: 1px solid #323232;
     position: relative;
     cursor: move;
-}
-
-::marker {
-    color: #14FFEC;
 }
 
 .object:not(.unselected):hover {
@@ -65,6 +58,10 @@ body {
     border: 1px solid #6c8ebf;
 }
 
+::marker {
+    color: #14FFEC;
+}
+
 .popup {
     position: absolute;
     right: -420px;
@@ -75,10 +72,22 @@ body {
     text-align: left;
 }
 
-.btnPosts {
-    /*margin: 20px;*/
+.settings {
+    width: 400px;
+}
+
+.numberProducts {
+    color: #14FFEC;
+    background: #52616B;
+    padding: 10px;
+    width: 60px;
+    border: none;
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.btnProducts {
     height: 40px;
-    color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
     cursor: pointer;
@@ -97,12 +106,5 @@ body {
     color: #14FFEC;
 }
 
-.numberPosts, select {
-    color: #6c8ebf;
-    background: #52616B;
-    border: 1px solid #c5b1ff;
-    padding: 10px;
-    width: fit-content;
-    border: none;
-    margin-bottom: 10px;
-}
+
+

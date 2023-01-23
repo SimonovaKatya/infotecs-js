@@ -11,36 +11,22 @@
 
 </head>
 <body>
-<div class="total">
-    Всего элементов: <span id="totalCount">0</span>
-</div>
 <div class="container" id="container">
-    <div>
+    <h1 class="container-totalElements">
+        Всего элементов: <span id="totalCount">0</span>
+    </h1>
+    <div class="container-list">
         <ol class="list" id="list"></ol>
+        <div class="settings">
+            <div>
+                <input value="10" type="number" class="numberProducts" id="numberProducts">
+                <label for="numberProducts">Количество элементов</label>
+            </div>
+            <button class="btnProducts" onclick={fetchProducts()}>
+                Получить следующие продукты
+            </button>
+        </div>
     </div>
-    <div class="settings" id="settings">
-        <!--        Сортировка:-->
-        <!--        <div>-->
-        <!--            <input type="radio" id="sort-price-type"-->
-        <!--                   name="sort-type" value="price" checked>-->
-        <!--            <label for="sort-price-type">По цене</label>-->
-
-        <!--            <input type="radio" id="sort-rating-type"-->
-        <!--                   name="sort-type" value="rating">-->
-        <!--            <label for="sort-rating-type">По рейтингу</label>-->
-        <!--        </div>-->
-
-        <!--        <select id="sort-list">-->
-        <!--            <option value="desc">По убыванию</option>-->
-        <!--            <option value="asc">По возрастанию</option>-->
-        <!--        </select>-->
-
-        <button class="btnPosts" onclick={fetchPosts()}>
-            Получить следующие посты
-        </button>
-    </div>
-
 </div>
-
 </body>
 </html>

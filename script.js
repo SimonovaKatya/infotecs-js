@@ -1,25 +1,18 @@
 let page = 0
 const list = document.getElementById('list')
-// const container = document.getElementById('container')
-const settings = document.getElementById('settings')
+const input = document.getElementById('numberProducts')
 let isDrag = false;
 
-const input = document.createElement('input')
-input.value = '10';
-input.type = 'number'
-input.classList.add('numberPosts')
-settings.append(input)
-
-// let sortType = document.querySelector('input[name="sort-type"]:checked').value;
-// console.log(sortType)
-
+// возможность указывать, сколько элементов нужно отобразить в текущем списке
 input.addEventListener('input', () => {
     const list = document.getElementById('list')
     list.innerHTML = null;
     page = 1;
-    fetchPosts();
+    fetchProducts();
 })
 
+
+// перетаскивание элементов внутри списка
 list.addEventListener(`dragstart`, (evt) => {
     evt.target.classList.add(`selected`);
     document.querySelectorAll('.object:not(.selected)').forEach(object => object.classList.add('unselected'))
@@ -47,7 +40,6 @@ list.addEventListener(`dragover`, (evt) => {
     if (!isMoveable) {
         return;
     }
-
     const nextElement = (currentElement === activeElement.nextElementSibling) ?
         currentElement.nextElementSibling :
         currentElement;
@@ -55,38 +47,32 @@ list.addEventListener(`dragover`, (evt) => {
     list.insertBefore(activeElement, nextElement);
 });
 
-async function fetchPosts() {
+//получение элементов с api
+async function fetchProducts() {
     const loader = document.createElement('div');
     loader.innerText = 'загрузка...'
     document.body.append(loader)
-    //
-    // const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${input.value}`)
-    // // const response = await axios.get(`https://dummyjson.com/products/1=${page}&_limit=${input.value}`)
     const response = await axios.get(`https://dummyjson.com/products?skip=${page * input.value}&limit=${input.value}`)
-
-    console.log(response)
     response.data.products.forEach(item => {
         let object = document.createElement('li')
         object.classList.add('object')
         object.innerText = `${item.title} (price: ${item.price}, rating: ${item.rating})`
         object.draggable = true;
-
         listenShownPopup(object, item);
-
         list.append(object)
     })
-    console.log(list)
     page += 1
-
     document.getElementById('totalCount').innerText = document.querySelectorAll('.object').length.toString()
     loader.remove()
 }
 
-fetchPosts()
+// вызов функции
+fetchProducts()
 
+// всплывающая панель
 function listenShownPopup(object, item) {
     const popup = document.createElement('div')
-    popup.innerText = `Заголовок:\n${item.title}\n\nКонтент:\n${item.body}`;
+    popup.innerText = `Наименование:\n${item.title}\n\nОписание:\n${item.description}`;
     popup.id = 'popup';
     popup.classList.add('popup')
 
@@ -99,3 +85,4 @@ function listenShownPopup(object, item) {
         popup.remove()
     })
 }
+
