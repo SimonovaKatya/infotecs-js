@@ -1,6 +1,7 @@
 let page = 0
 const list = document.getElementById('list')
-const input = document.getElementById('numberProducts')
+const input = document.getElementById('number-products')
+const totalCount = document.getElementById('total-count')
 let isDrag = false;
 
 // возможность указывать, сколько элементов нужно отобразить в текущем списке
@@ -62,20 +63,25 @@ async function fetchProducts() {
         list.append(object)
     })
     page += 1
-    document.getElementById('totalCount').innerText = document.querySelectorAll('.object').length.toString()
+    totalCount.innerText = document.querySelectorAll('.object').length.toString()
     loader.remove()
 }
 
 // вызов функции
 fetchProducts()
 
-// всплывающая панель
+// создание всплывающей панель
 function listenShownPopup(object, item) {
     const popup = document.createElement('div')
     popup.innerText = `Наименование:\n${item.title}\n\nОписание:\n${item.description}`;
     popup.id = 'popup';
     popup.classList.add('popup')
 
+    setOpenCloseListeners(object, popup);
+}
+
+// навешивание на панель обработчиков событий
+function setOpenCloseListeners(object, popup) {
     object.addEventListener('mouseover', () => {
         if (isDrag) return
         object.append(popup)

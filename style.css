@@ -19,14 +19,14 @@ body {
     border: 1px solid #0D7377;
 }
 
-.container-totalElements {
+.container__total-elements {
     text-align: center;
     margin-bottom: 20px;
     font-size: 25px;
     font-weight: bold;
 }
 
-.container-list {
+.container__list {
     display: flex;
     justify-content: center;
     gap: 5%;
@@ -76,7 +76,7 @@ body {
     width: 400px;
 }
 
-.numberProducts {
+.number-products {
     color: #14FFEC;
     background: #52616B;
     padding: 10px;
@@ -86,7 +86,7 @@ body {
     margin-right: 15px;
 }
 
-.btnProducts {
+.btn-products {
     height: 40px;
     border-radius: 5px;
     padding: 10px 25px;
@@ -101,7 +101,7 @@ body {
     margin-bottom: 10px;
 }
 
-.btnPosts:hover {
+.btn-products:hover {
     background-color: #323232;
     color: #14FFEC;
 }

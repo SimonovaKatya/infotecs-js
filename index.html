@@ -12,17 +12,15 @@
 </head>
 <body>
 <div class="container" id="container">
-    <h1 class="container-totalElements">
-        Всего элементов: <span id="totalCount">0</span>
+    <h1 class="container__total-elements">
+        Всего элементов: <span id="total-count">0</span>
     </h1>
-    <div class="container-list">
+    <div class="container__list">
         <ol class="list" id="list"></ol>
         <div class="settings">
-            <div>
-                <input value="10" type="number" class="numberProducts" id="numberProducts">
-                <label for="numberProducts">Количество элементов</label>
-            </div>
-            <button class="btnProducts" onclick={fetchProducts()}>
+            <input value="10" type="number" class="number-products" id="number-products">
+            <label for="number-products">Количество элементов</label>
+            <button class="btn-products" onclick={fetchProducts()}>
                 Получить следующие продукты
             </button>
         </div>
